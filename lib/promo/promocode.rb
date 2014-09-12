@@ -137,6 +137,11 @@ module Promo
           raise InvalidPromoProduct.new 'promocode.messages.must_have_course'
         end
       end
+
+      # Validating use according to cart value if minimum purchase value is specified
+      if !self.minimum_purchase_value.nil?
+        raise InsufficientCartValue.new 'promocode.messages.insufficient_cart_value' if options[:purchase_value] < self.minimum_purchase_value
+      end
       # Returns the promocode if it's valid
       self
     end
