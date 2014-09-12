@@ -13,6 +13,7 @@ module Promo
         time = Time.now.strftime("%Y%m%d%H%M%S").to_i
         template '1_create_promo_promocode.rb', File.join('db', 'migrate', "#{time}_create_promo_promocode.rb")
         template '2_create_promo_history.rb', File.join('db', 'migrate', "#{time+1}_create_promo_history.rb")
+        template '3_add_minimum_purchase_value_for_promocode.rb', File.join('db', 'migrate', "#{time+2}_add_minimum_purchase_value_for_promocode.rb")
       end
 
     end
