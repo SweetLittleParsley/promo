@@ -1,4 +1,4 @@
-class CreatePromoMinimumPurchaseValue < ActiveRecord::Migration
+class AddMinimumPurchaseValueForPromocode < ActiveRecord::Migration
   def change
     add_column :promo_promocodes, :minimum_purchase_value, :integer
   end
