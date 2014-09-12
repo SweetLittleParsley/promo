@@ -15,4 +15,5 @@ class UsedPromocode < PromocodeException; end
 class ExpiredPromocode < PromocodeException; end
 class InvalidPromocode < PromocodeException; end
 class InvalidPromoProduct < PromocodeException; end
+class InsufficientCartValue < PromocodeException; end
 
