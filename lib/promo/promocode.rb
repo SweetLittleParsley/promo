@@ -1,7 +1,7 @@
 module Promo
 
   STATUS = { valid: 0, expired: 1, invalid: 2, used: 3}
-  TYPE = { percentage: 1, fixed_value: 0 }
+  TYPE = { final_value: 2, percentage: 1, fixed_value: 0 }
 
   class Promocode < ActiveRecord::Base
     self.table_name = 'promo_promocodes'
