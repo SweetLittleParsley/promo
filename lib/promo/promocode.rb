@@ -97,6 +97,10 @@ module Promo
       self.promo_type == Promo::TYPE[:fixed_value]
     end
 
+    def final_value?
+      self.promo_type == Promo::TYPE[:final_value]
+    end
+
     def is_expired?
       return true if self.status == Promo::STATUS[:expired]
       return false if self.expires > Time.now
