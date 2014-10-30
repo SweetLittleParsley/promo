@@ -113,11 +113,11 @@ module Promo
     # Options:
     #  product_list: Array with products, mandatory when the promocode is associated with
     #                a specific product or a specific category of products
-    #    
+    #
     def is_valid?(options={})
       raise UsedPromocode.new 'promocode.messages.already_used' if self.status == Promo::STATUS[:used]
-      raise InvalidPromocode.new 'promocode.messages.invalid' if self.status != Promo::STATUS[:valid]
       raise ExpiredPromocode.new 'promocode.messages.expired' if is_expired?
+      raise InvalidPromocode.new 'promocode.messages.invalid' if self.status != Promo::STATUS[:valid]
 
       # Validating use with a specific product associated
       if self.has_product?
