@@ -20,6 +20,9 @@ module Promo
         if Dir[File.join('db', 'migrate', '*_add_minimum_purchase_value_for_promocode*')].empty?
           template '3_add_minimum_purchase_value_for_promocode.rb', File.join('db', 'migrate', "#{time+2}_add_minimum_purchase_value_for_promocode.rb")
         end
+        if Dir[File.join('db', 'migrate', '*_add_minimum_purchase_value_for_promocode*')].empty?
+          template '4_add_product_list_to_promo.rb', File.join('db', 'migrate', "#{time+3}_add_product_list_to_promo.rb")
+        end
       end
 
     end
