@@ -21,7 +21,7 @@ module Promo
         product_list = options[:product_list]
 
         return discount_for_product(promocode, product_list) if promocode.has_product?
-        return discount_for_product_list(promocode, product_list) if promocode.product_list.present?
+        return discount_for_product_list_ids(promocode, product_list) if promocode.product_list.present?
 
         if promocode.is_percentage?
           total = product_list.map{ |i| i.single_value }.reduce(:+)
@@ -49,17 +49,16 @@ module Promo
       end
 
       # Calculates the discount for a list of products based in the promocode list
-      def discount_for_product_list promocode, product_list
-        product_list.each do |p|
-          binding.pry
-          product_list.delete(p) unless promocode.product_list.include? p.id
+      def discount_for_product_list_ids promocode, product_list_ids
+        product_list_ids.each do |p|
+          product_list_ids.delete(p) unless promocode.product_list.include? p.product_id
         end
 
         if promocode.is_percentage?
-          total = product_list.map{ |i| i.single_value }.reduce(:+)
+          total = product_list_ids.map{ |i| i.single_value }.reduce(:+)
           return (calculate_percentage total, promocode.value)
         else
-          return 0 if product_list.empty?
+          return 0 if product_list_ids.empty?
           return promocode.value
         end
       end
