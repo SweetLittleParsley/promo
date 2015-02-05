@@ -54,13 +54,14 @@ module Promo
         product_list.each do |p|
           product_list.delete(p) unless promo_prod_list.include? p.id
         end
+
         if promocode.is_percentage?
           total = product_list.map{ |i| i.single_value }.reduce(:+)
-          val = calculate_percentage total, promocode.value
+          return (calculate_percentage total, promocode.value)
         else
-          val = promocode.value
+          return 0 if product_list.empty?
+          return promocode.value
         end
-        val
       end
 
       #calculates the percentage to a specific value
