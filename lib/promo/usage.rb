@@ -19,7 +19,7 @@ module Promo
         return 0 if options[:promocode].nil?
         promocode = options[:promocode]
         product_list = options[:product_list]
-
+        binding.pry
         return discount_for_product(promocode, product_list) if promocode.has_product?
         return discount_for_product_list(promocode, product_list) if promocode.product_list.present?
 
@@ -54,7 +54,7 @@ module Promo
         product_list.each do |p|
           product_list.delete(p) unless promo_prod_list.include? p.id
         end
-
+        binding.pry
         if promocode.is_percentage?
           total = product_list.map{ |i| i.single_value }.reduce(:+)
           return (calculate_percentage total, promocode.value)
