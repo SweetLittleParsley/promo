@@ -38,7 +38,10 @@ module Promo
       # Parameters:
       #  promocode: Pomo::Promocode object
       #  product_list: array with the products to be evaluated
-      def discount_for_product promocode, product_list
+      def discount_for_product promocode, product_list=nil
+        return 0 unless (product_list.present? || promocode.product_list.present?)
+
+        product_list = promocode.product_list unless product_list.present?
         product = promocode.product
         products = product_list.collect{|p| p.product}
         return 0 unless products.include? product
