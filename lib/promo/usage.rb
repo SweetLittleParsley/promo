@@ -50,9 +50,9 @@ module Promo
 
       # Calculates the discount for a list of products based in the promocode list
       def discount_for_product_list promocode, product_list
-        promo_prod_list = promocode.product_list
         product_list.each do |p|
-          product_list.delete(p) unless promo_prod_list.include? p.id
+          binding.pry
+          product_list.delete(p) unless promocode.product_list.include? p.id
         end
 
         if promocode.is_percentage?
