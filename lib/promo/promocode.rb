@@ -39,7 +39,7 @@ module Promo
       options[:quantity] = 1 if options[:quantity].to_i <= 0
       options[:promo_type] ||= Promo::TYPE[:percentage]
       options[:status] ||= Promo::STATUS[:valid]
-      options[:expires] ||= Time.now + 4.weeks
+      options[:expires] ||= Time.now + 12.weeks
 
       if options[:code].blank?
         options[:code] = generate_code
