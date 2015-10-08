@@ -153,10 +153,10 @@ module Promo
     # Generate random codes
     def self.generate_code(size=4,code="")
       code = SecureRandom.hex(size) if code.empty?
-      code = code+SecureRandom.hex(size) unless code.empty?
+      code += SecureRandom.hex(size) unless code.empty?
       # Validates if the code is already created, then add something to the name
-      if Promo::Promocode.where(code: code).first
-        code = code+SecureRandom.hex(1)
+      while Promo::Promocode.where(code: code).any? do
+        code += SecureRandom.hex(1)
       end
       code
     end
