@@ -6,7 +6,7 @@ module Promo
       #  code: string with the code used
       #  product_list: array with the products to be evaluated
       def validate (options={})
-        promocode = Promo::Promocode.where(code: options[:code]).first
+        promocode = Promo::Promocode.where("lower(code) = ?", options[:code].downcase).first
         raise InvalidPromocode.new 'promocode.messages.invalid' if promocode.nil?
         promocode.is_valid? options
       end
